@@ -5,26 +5,46 @@ interface iProps {
 }
 
 export const UsersFlexbox = styled.div`
-	max-width: 95vw;
 	display: flex;
 	flex-wrap: wrap;
-	gap: 2rem;
-	margin: 3rem auto;
+	gap: 2.5rem;
+	margin: 3rem 5rem;
 `
 
 export const UserBox = styled.div<iProps>`
+	overflow: hidden;
 	position: relative;
+	font-size: 18px;
 	background: ${props => props.deletedId ? 'var(--gray-light)' : '' };
-	width: 22rem;
+	width: 25.125rem;
 	height: 30rem;
 	border: 1px solid black;
-	padding: 1rem;
 	border-radius: 1rem;
+	padding-bottom: 1rem;
 	display: flex;
 	flex-direction: column;
 `
 
+export const UserTitle = styled.h2`
+	font-weight: 700;
+	font-size: 26px;
+	padding: 1rem;
+	background-color: var(--blue);
+	color: white;
+`
+
+export const UserLabel = styled.span`
+	font-weight: 700;
+`
+export const UserLabelGroup = styled.div`
+	margin: 1rem 0;
+	display: flex;
+	gap: .5rem;
+	align-items: center; 
+`
+
 export const UserBody = styled.div`
+	padding: 1rem;
 	flex: 1;
 `
 

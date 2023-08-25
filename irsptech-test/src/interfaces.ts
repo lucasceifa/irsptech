@@ -3,13 +3,13 @@ export interface iUsers {
 	name: string
 	username: string
 	email: string
-	adress: iAdress
+	address: iAddress
 	phone: string
 	website: string
 	company: iCompany
 }
 
-export interface iAdress {
+export interface iAddress {
 	street: string
 	suite: string
 	city: string
