@@ -16,7 +16,7 @@ export const UserBox = styled.div<iProps>`
 	position: relative;
 	font-size: 18px;
 	background: ${props => props.deletedId ? 'var(--gray-light)' : '' };
-	width: 25.125rem;
+	width: 26.55rem;
 	height: 30rem;
 	border: 1px solid black;
 	border-radius: 1rem;
@@ -53,4 +53,14 @@ export const ButtonDiv = styled.div`
 	justify-content: flex-end;
 	margin-right: 1rem;
 	gap: .5rem;
+`
+
+export const SearchDiv = styled.div`
+	display: flex;
+	width: 100%;
+	align-items: center;
+	margin-top: 1.5rem;
+	padding-left: 5rem;
+	padding-right: 5rem;
+	justify-content: space-between;
 `

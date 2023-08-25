@@ -25,7 +25,7 @@ export const ModalEditUser: React.FC<props> = ({ isOpen, onRequestClose, onConfi
             <ModalOverlay />
             <ModalContent>
                 <Flex justifyContent={'space-between'} pt={'1rem'} px={'1.5rem'} alignItems={'center'}>
-                    <Text color={'var(--label-dark)'} fontWeight={'700'} fontSize={'22px'}>Update this user infos</Text>
+                    <Text color={'var(--label-dark)'} fontWeight={'700'} fontSize={'22px'}>{model !== undefined ? 'Update this user infos' : 'Create a new user'}</Text>
                     <MdClose cursor={'pointer'} color='var(--blue)' size={24} onClick={onRequestClose} />
                 </Flex>
                 <ModalBody>
@@ -88,7 +88,7 @@ export const ModalEditUser: React.FC<props> = ({ isOpen, onRequestClose, onConfi
                     </Flex>
                     <Flex justifyContent={'flex-end'} gap={'1rem'} my={'1rem'}>
                         <Button bgColor='var(--gray-light)' size='md' onClick={onRequestClose}>Cancel</Button>
-                        <Button bgColor='var(--blue)' size='md' onClick={() => { onConfirm(Model, model?.name === ''); onRequestClose() }}>{model?.name !== '' ? 'Update' : 'Create'}</Button>
+                        <Button bgColor='var(--blue)' size='md' onClick={() => { onConfirm(Model, model === undefined); onRequestClose() }}>{model !== undefined ? 'Update' : 'Create'}</Button>
                     </Flex>
                 </Flex>
                 </ModalBody>
