@@ -6,8 +6,7 @@ export const Container = styled.div`
 `
 
 export const Div = styled.div`
-	min-height: 100vh;
-	max-width: 100vw;
+	width: 100vw;
 	box-sizing: border-box;
 	background-repeat: no-repeat;
 	background-size: cover;
