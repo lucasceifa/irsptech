@@ -1,0 +1,8 @@
+:root{
+  --blue: #0000FF;
+  
+  --gray-light: #a0a0a0;
+
+	--transitionBtns: 0.2s;
+	--ShadowBtns: 0rem 0.125rem 0.5rem rgba(0, 0, 0, 0.25);
+}
