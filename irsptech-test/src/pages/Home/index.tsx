@@ -8,9 +8,11 @@ import { Button } from "../../components/Button"
 import { FaPencilAlt, FaTrash, FaSearch, FaPlus } from "react-icons/fa"
 import { ModalEditUser } from "../../components/ModalEditUser"
 import { UpdateElementByPosition } from "../../Utils/Helper"
+import { useNavigate } from "react-router"
 
 export const Home: React.FC = () => {
 	//Funcoes de delete ou post eu to adicionando no array do model pois nao da pra alterar la no link que voces enviaram, apenas simula, no geral eu faco a requisicao novamente de puxar os usuarios apos alterar o array do mesmo no banco
+	const nav = useNavigate()
 
 	const [IsLoading, setIsLoading] = useState(false)
 
@@ -37,23 +39,14 @@ export const Home: React.FC = () => {
 			.catch(err => { console.log(err); setIsLoading(false); setDeletedId('') })
 	}
 
-	function UpdateCreateUser(User: iUsers, Creating: boolean) : void {
+	function UpdateCreateUser(User: iUsers) : void {
 		setIsLoading(true)
-		if (!Creating) {
-			appApi.put(`users/${ActualEditUser?.id}`, User)
-			.then(() => { 
-					setUsers(UpdateElementByPosition(Users, PositionActualUser, User))
-					setIsLoading(false);
-				})
-			.catch(err => { console.log(err); setIsLoading(false);  })
-		} else {
-			appApi.post(`users/${ActualEditUser?.id}`, User)
-			.then(() => { 
-				setUsers([...Users, User])
+		appApi.put(`users/${ActualEditUser?.id}`, User)
+		.then(() => { 
+				setUsers(UpdateElementByPosition(Users, PositionActualUser, User))
 				setIsLoading(false);
-				})
-			.catch(err => { console.log(err); setIsLoading(false);  })
-		}
+			})
+		.catch(err => { console.log(err); setIsLoading(false);  })
 	}
 
 	function OnCloseModalEditUser(): void {
@@ -62,10 +55,8 @@ export const Home: React.FC = () => {
 		setActualEditUser(undefined)
 	}
 
-	function OnOpenModalEditUser(e: iUsers, i: number, edit?: boolean): void {
-		if (edit) {
-			setPositionActualUser(i)
-		}
+	function OnOpenModalEditUser(e: iUsers, i: number): void {
+		setPositionActualUser(i)
 		setActualEditUser(e)
 	}
 
@@ -84,20 +75,13 @@ export const Home: React.FC = () => {
 			{ActualEditUser !== undefined && <ModalEditUser
 				isOpen={ModalEditUserIsOpen}
 				model={ActualEditUser}
-				onConfirm={(e, bool) => UpdateCreateUser(e, bool)}
-				onRequestClose={OnCloseModalEditUser}
-			/>
-			}
-			{ActualEditUser === undefined && <ModalEditUser
-				isOpen={ModalEditUserIsOpen}
-				model={ActualEditUser}
-				onConfirm={(e, bool) => UpdateCreateUser(e, bool)}
+				onConfirm={(e) => UpdateCreateUser(e)}
 				onRequestClose={OnCloseModalEditUser}
 			/>
 			}
 			<div style={{ maxWidth: '1980px', display: 'flex', alignItems: 'center', flexDirection: 'column', margin: '0 auto' }}>
 				<SearchDiv>
-					<Button fontSize={'20px'} paddingX={'1rem'} VarColor={'blue'} onClick={() => { setModalEditUserIsOpen(true) }} leftIcon={<FaPlus />}>Add User</Button>
+					<Button fontSize={'20px'} paddingX={'1.5rem'} VarColor={'blue'} onClick={() => nav('/Register')} leftIcon={<FaPlus />}>Register a new User</Button>
 					<InputGroup width={'25rem'} borderRadius={'.5rem'} h={'2.5rem'}>
 						<InputLeftElement bgColor='white' color='gray.300' borderLeft={'1px'} borderTop={'1px'} borderBottom={'1px'}
 								borderRadius='sm' borderColor={'#00000050'}
@@ -110,7 +94,7 @@ export const Home: React.FC = () => {
 				<UsersFlexbox>
 					{Users && Users.filter((e) => { if (Search !== '') { return e.name.toLowerCase().includes(Search.toLowerCase()) ? e : false } else { return e } }).map((e, i) => {
 						return (
-							<UserBox deletedId={DeletedId === e.id} key={e.id}>
+							<UserBox deletedid={DeletedId === e.id ? 'true' : ''} key={e.id}>
 								<UserTitle>{e.name}</UserTitle>
 								<UserBody>
 									<UserLabelGroup>
@@ -143,13 +127,13 @@ export const Home: React.FC = () => {
 									</UserLabelGroup>
 								</UserBody>
 								<ButtonDiv>
-									<Button onClick={() => OnOpenModalEditUser(e, i, true)} VarColor={'orange'}><FaPencilAlt /></Button>
+									<Button onClick={() => OnOpenModalEditUser(e, i)} VarColor={'orange'}><FaPencilAlt /></Button>
 									<Button onClick={() => DeleteUser(e.id)} VarColor={'red'}><FaTrash /></Button>
 								</ButtonDiv>
 								{IsLoading && (DeletedId === e.id) && (
 									<Spinner
 										pos={'absolute'}
-										top={'35%'}
+										top={'45%'}
 										left={'38%'}
 										transform={'translate(-50%, -50%)'}
 										thickness='6px'

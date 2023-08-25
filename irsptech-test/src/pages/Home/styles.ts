@@ -1,21 +1,22 @@
 import styled from 'styled-components'
 
 interface iProps {
-	deletedId: boolean
+	deletedid: string
 }
 
 export const UsersFlexbox = styled.div`
 	display: flex;
+	width: 100%;
 	flex-wrap: wrap;
 	gap: 2.5rem;
-	margin: 3rem 5rem;
+	padding: 3rem 5rem;
 `
 
 export const UserBox = styled.div<iProps>`
 	overflow: hidden;
 	position: relative;
 	font-size: 18px;
-	background: ${props => props.deletedId ? 'var(--gray-light)' : '' };
+	background: ${props => props.deletedid === 'true' ? 'var(--gray-light)' : '' };
 	width: 26.55rem;
 	height: 30rem;
 	border: 1px solid black;
