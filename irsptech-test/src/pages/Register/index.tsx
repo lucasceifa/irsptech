@@ -2,7 +2,7 @@ import { Flex, FormControl, FormLabel } from "@chakra-ui/react"
 import { useState } from "react"
 import { iUsers } from "../../interfaces"
 import {v4 as uuidv4} from 'uuid';
-import { FormRegister } from "./styles";
+import { FormRegister, FormTitle } from "./styles";
 import { Button } from "../../components/Button";
 import { useNavigate } from "react-router";
 import { appApi } from "../../services/appApi";
@@ -22,6 +22,7 @@ export const Register: React.FC = () => {
 
   return (
 		<FormRegister>
+			<FormTitle>Register your new user</FormTitle>
 			<Flex mb={'1rem'}>
 					<FormControl>
 							<FormLabel fontWeight={'700'}>Name</FormLabel>

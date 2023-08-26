@@ -8,8 +8,12 @@ export const UsersFlexbox = styled.div`
 	display: flex;
 	width: 100%;
 	flex-wrap: wrap;
-	gap: 2.5rem;
+	gap: 2.5%;
 	padding: 3rem 5rem;
+
+	@media (max-width: 568px) {
+		padding: 3rem 2rem;
+	}
 `
 
 export const UserBox = styled.div<iProps>`
@@ -17,13 +21,28 @@ export const UserBox = styled.div<iProps>`
 	position: relative;
 	font-size: 18px;
 	background: ${props => props.deletedid === 'true' ? 'var(--gray-light)' : '' };
-	width: 26.55rem;
+	margin-bottom: 2rem;
+	width: 23%;
 	height: 30rem;
 	border: 1px solid black;
 	border-radius: 1rem;
 	padding-bottom: 1rem;
 	display: flex;
 	flex-direction: column;
+
+	@media (max-width: 1700px) {
+		width: 31.65%;
+	}
+
+	@media (max-width: 1256px) {
+		width: 48.75%;
+	}
+	@media (max-width: 768px) {
+		width: 100%;
+		margin: 0 auto;
+		margin-bottom: 2rem;
+		height: auto;
+	}
 `
 
 export const UserTitle = styled.h2`
@@ -64,4 +83,9 @@ export const SearchDiv = styled.div`
 	padding-left: 5rem;
 	padding-right: 5rem;
 	justify-content: space-between;
+
+	@media (max-width: 568px) {
+		padding: 3rem 2rem;
+		gap: 1rem;
+	}
 `

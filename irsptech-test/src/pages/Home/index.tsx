@@ -81,7 +81,8 @@ export const Home: React.FC = () => {
 			}
 			<div style={{ maxWidth: '1980px', display: 'flex', alignItems: 'center', flexDirection: 'column', margin: '0 auto' }}>
 				<SearchDiv>
-					<Button fontSize={'20px'} paddingX={'1.5rem'} VarColor={'blue'} onClick={() => nav('/Register')} leftIcon={<FaPlus />}>Register a new User</Button>
+					{window.innerWidth > 768 && <Button fontSize={'20px'} paddingX={'1.5rem'} VarColor={'blue'} onClick={() => nav('/Register')} leftIcon={<FaPlus />}>Register a new User</Button>}
+					{window.innerWidth <= 768 && <Button fontSize={'20px'} VarColor={'blue'} onClick={() => nav('/Register')}><FaPlus /></Button>}
 					<InputGroup width={'25rem'} borderRadius={'.5rem'} h={'2.5rem'}>
 						<InputLeftElement bgColor='white' color='gray.300' borderLeft={'1px'} borderTop={'1px'} borderBottom={'1px'}
 								borderRadius='sm' borderColor={'#00000050'}
