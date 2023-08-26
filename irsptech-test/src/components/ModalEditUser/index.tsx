@@ -23,7 +23,7 @@ export const ModalEditUser: React.FC<props> = ({ isOpen, onRequestClose, onConfi
             onClose={onRequestClose}
         >
             <ModalOverlay />
-            <ModalContent w={'24rem'}>
+            <ModalContent w={'26rem'}>
                 <Flex justifyContent={'space-between'} pt={'1rem'} px={'1.5rem'} alignItems={'center'}>
                     <Text color={'var(--label-dark)'} fontWeight={'700'} fontSize={'22px'}>Update this user infos</Text>
                     <MdClose cursor={'pointer'} color='var(--blue)' size={24} onClick={onRequestClose} />
