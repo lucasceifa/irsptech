@@ -1,4 +1,4 @@
-import { Flex, FormControl, FormLabel } from "@chakra-ui/react"
+import { Flex, FormControl, FormLabel, useToast } from "@chakra-ui/react"
 import { useState } from "react"
 import { iUsers } from "../../interfaces"
 import {v4 as uuidv4} from 'uuid';
@@ -11,12 +11,23 @@ import { appApi } from "../../services/appApi";
 export const Register: React.FC = () => {
 	const myuuid = uuidv4()
 	const nav = useNavigate()
+	const toast = useToast()
 
 	const [Model, setModel] = useState<iUsers>({ address: { city: '', geo: { lat: '', lng: '' }, street: '', suite: '', zipcode: '' }, company: { bs: '', catchPhrase: '', name: '' }, email: '', id: myuuid.toString(), name: '', phone: '', username: '', website: ''  })
 
 	function Register(e: iUsers) {
 		appApi.post('/Users', e)
-			.then(res => console.log(res.data))
+			.then(() => {
+				toast({
+					title: 'User successfully registered!',
+					status: 'success',
+					isClosable: false,
+					position: 'top-right',
+					duration: 4000
+				})
+				nav('/')
+				//A parte de adicionar o usuario cadastrado na tela inicial funcionaria normalmente em um banco normal, porém esse Json só permite "simular" funções de post, put e delete, como os demais estavam na mesma página eu consegui "simular" também as alterações, já como esse está em outro componente seria uma bela gambiarra pra ele ser adicionado, supondo que fosse um banco nosso automaticamente ele apareceria na tela inicial ;)
+			})
 			.catch(err => console.log(err))
 	}
 
